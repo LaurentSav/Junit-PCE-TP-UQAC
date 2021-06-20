@@ -26,7 +26,7 @@ import stev.kwikemart.*;
  * @author Sylvain Hallé
  *
  */
-public class RegisterDemo 
+public class RegisterDemo
 {
 	/**
 	 * The main method to be executed.
@@ -53,7 +53,7 @@ public class RegisterDemo
 		grocery.add(new Item(Upc.generateCode("64748119599"), "Chewing gum", 2, 0.99));
 		grocery.add(new Item(Upc.generateCode("44348225996"), "Gobstoppers", 1, 0.99));
 		grocery.add(new Item(Upc.generateCode("34323432343"), "Nerds", 2, 1.44));
-		grocery.add(new Item(Upc.generateCode("54323432343"), "Doritos Club", 1, 0.5));
+		grocery.add(new Item(Upc.generateCode("54323432343"), "Doritos Club", 1, 10));
 		grocery.add(new Item(Upc.generateCode("61519314159"), "Doritos", 1, 1.25));
 
 		// Print receipt
