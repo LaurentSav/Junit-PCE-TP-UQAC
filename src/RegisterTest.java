@@ -16,7 +16,22 @@ import java.util.List;
  *
  *
  *
- *
+ * * * * * * * * Commentaires!!!
+ * 
+ * Nous avons testés nos test sur plusieurs ordinateurs et on s'est rendu compte que selon l'ordinateur (canadien ou français)
+ * on peut avoir des virgule ou des points pour signifier une décimale.
+ * Par exemple: 2.36 et 2,36
+ * 
+ * En utilisant la fonction suivante (on compare des strings):
+ * assertTrue(register.print(grocery).contains("TOTAL                               "+total_price));
+ * 
+ * Il se trouve que 9 de nos tests ne marchent pas à cause d'un problème de '.' et de ','
+ * 
+ * Si vous avez 9 failures, veuillez commenter la ligne suivante:
+ * String total_prices = total_price + "";
+ * 
+ * et décommenter la ligne suivante:
+ * String total_prices = roundVirgule(total_price + "");
  *
  *
 * * * * * * * * * * * * * *  Classes :
@@ -84,6 +99,12 @@ public class RegisterTest {
 		grocery.clear();
 
 	}
+	
+	public String roundVirgule(String temp) {
+		
+		return temp.replace(".", ",");
+		
+	}
 
 	/**
 	 * Classes : UPCV1 âˆ© UPCV2 âˆ© UPCV4; QV1 ; RPV1
@@ -149,7 +170,9 @@ public class RegisterTest {
 		grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", -1, 15));
 		double total_price = grocery.get(0).getRetailPrice()*grocery.get(0).getQuantity() +grocery.get(1).getRetailPrice()*grocery.get(1).getQuantity();
 		total_price *= 1.05;
-		assertTrue(register.print(grocery).contains("TOTAL                               "+total_price));
+		String total_prices = total_price + "";
+		//String total_prices = roundVirgule(total_price + "");
+		assertTrue(register.print(grocery).contains("TOTAL                               "+total_prices));
 	}
 	/**
 	 * Classe :  (UPCV1 âˆ© UPCV2, QV1, RPV1) âˆª (UPCI2, QV3, RPV1) here q2 == - q1
@@ -161,7 +184,9 @@ public class RegisterTest {
 		grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", -1, 15));
 		double total_price = grocery.get(0).getRetailPrice()*grocery.get(0).getQuantity() +grocery.get(1).getRetailPrice()*grocery.get(1).getQuantity();
 		total_price *= 1.05;
-		assertTrue(register.print(grocery).contains("TOTAL                               "+total_price));
+		String total_prices = total_price + "";
+		//String total_prices = roundVirgule(total_price + "");
+		assertTrue(register.print(grocery).contains("TOTAL                               "+total_prices));
 	}
 	/**
 	 * Classe :  Same as last one but this time i'm starting with the negative quantity (meaning you're not supposed to remove something you didnt already add)
@@ -185,7 +210,9 @@ public class RegisterTest {
 		grocery.add(new Item(Upc.generateCode("22345678901"), "Bananas", -1.5, 15));
 		double total_price = grocery.get(0).getRetailPrice()*grocery.get(0).getQuantity() +grocery.get(1).getRetailPrice()*grocery.get(1).getQuantity();
 		total_price *= 1.05;
-		assertTrue(register.print(grocery).contains("TOTAL                               "+total_price));
+		String total_prices = total_price + "";
+		//String total_prices = roundVirgule(total_price + "");
+		assertTrue(register.print(grocery).contains("TOTAL                               "+total_prices));
 
 
 	}
@@ -221,7 +248,9 @@ public class RegisterTest {
 		grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 2, 15));
 		grocery.add(new Item(Upc.generateCode("52345678901"), "Bananas", 1, 8));
 		double total_price = (grocery.get(0).getRetailPrice()*grocery.get(0).getQuantity())*1.05 - (grocery.get(1).getRetailPrice()*grocery.get(1).getQuantity());
-		assertTrue(register.print(grocery).contains("TOTAL                               "+total_price));
+		String total_prices = total_price + "";
+		//String total_prices = roundVirgule(total_price + "");
+		assertTrue(register.print(grocery).contains("TOTAL                               "+total_prices));
 
 	}
 	/**
@@ -233,7 +262,9 @@ public class RegisterTest {
 		grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 2, 15));
 		grocery.add(new Item(Upc.generateCode("52345678901"), "Bananas", 1, 8));
 		double total_price = (grocery.get(0).getRetailPrice()*grocery.get(0).getQuantity())*1.05 - (grocery.get(1).getRetailPrice()*grocery.get(1).getQuantity());
-		assertTrue(register.print(grocery).contains("TOTAL                               "+total_price));
+		String total_prices = total_price + "";
+		//String total_prices = roundVirgule(total_price + "");
+		assertTrue(register.print(grocery).contains("TOTAL                               "+total_prices));
 
 	}
 	/**
@@ -246,7 +277,9 @@ public class RegisterTest {
 		grocery.add(new Item(Upc.generateCode("22345678901"), "Bananas", 1.5, 8));
 		double total_price = grocery.get(0).getRetailPrice()*grocery.get(0).getQuantity() +grocery.get(1).getRetailPrice()*grocery.get(1).getQuantity();
 		total_price *= 1.05;
-		assertTrue(register.print(grocery).contains("TOTAL                               "+total_price));
+		String total_prices = total_price + "";
+		//String total_prices = roundVirgule(total_price + "");
+		assertTrue(register.print(grocery).contains("TOTAL                               "+total_prices));
 
 	}
 	/**
@@ -258,7 +291,9 @@ public class RegisterTest {
 		grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 5, 8));
 		double total_price = grocery.get(0).getRetailPrice()*grocery.get(0).getQuantity();
 		total_price *= 1.05;
-		assertTrue(register.print(grocery).contains("TOTAL                               "+total_price));
+		String total_prices = total_price + "";
+		//String total_prices = roundVirgule(total_price + "");
+		assertTrue(register.print(grocery).contains("TOTAL                               "+total_prices));
 
 	}
 
@@ -273,9 +308,10 @@ public class RegisterTest {
 		grocery.add(new Item(Upc.generateCode("22345678901"), "Bananas", 1.5, 1.5));
 		double total_price = grocery.get(0).getRetailPrice() * grocery.get(0).getQuantity();
 		total_price = total_price*1.05;
-		System.out.println(total_price);
-		System.out.println(register.print(grocery));
-		assertTrue(register.print(grocery).contains("TOTAL                               "+Math.round(total_price * 100.0) / 100.0));
+		total_price = Math.round(total_price * 100.0) / 100.0;
+		String total_prices = total_price + "";
+		//String total_prices = roundVirgule(total_price + "");
+		assertTrue(register.print(grocery).contains("TOTAL                               "+ total_prices));
 
 	}
 	/**
